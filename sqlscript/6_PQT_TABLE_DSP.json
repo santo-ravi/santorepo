@@ -1,0 +1,17 @@
+{
+	"name": "6_PQT_TABLE_DSP",
+	"properties": {
+		"content": {
+			"query": "CREATE TABLE ActivityLogTable\n(\n    [Correlationid]    VARCHAR(200),\n    [Operationname]    VARCHAR(300),\n    [Status]           VARCHAR(100),\n    [Eventcategory]    VARCHAR(100),\n    [Level]            VARCHAR(100),\n    [Time]             VARCHAR(100),\n    [Subscription]     VARCHAR(200),\n    [Eventinitiatedby] VARCHAR(1000),\n    [Resourcetype]     VARCHAR(300),\n    [Resourcegroup]    VARCHAR(1000),\n    [Resource]         VARCHAR(2000)\n)\nWITH\n(\n    DISTRIBUTION = ROUND_ROBIN\n)\n\nSELECT * FROM ActivityLog\n\nDELETE FROM ActivityLog\n\nCOPY INTO ActivityLogTable\nFROM 'https://laxmynicdatastorage.blob.core.windows.net/data/folder/ActivityLog01.parquet'\nWITH\n(\n    FILE_TYPE = 'PARQUET',\n    CREDENTIAL = \n    (\n        IDENTITY = 'Shared Access Signature',\n        SECRET = 'sv=2024-11-04&ss=bfqt&srt=sco&sp=rwdlacupyx&se=2026-03-20T10:01:20Z&st=2026-03-20T01:46:20Z&spr=https&sig=EtGH8mEY5qRVO7luGn9HoGCeGHrTn0yjmGoAw%2B%2Fs79g%3D'\n    )\n)",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "datapool",
+				"poolName": "datapool"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

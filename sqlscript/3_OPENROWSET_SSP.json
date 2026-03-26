@@ -1,0 +1,17 @@
+{
+	"name": "3_OPENROWSET_SSP",
+	"properties": {
+		"content": {
+			"query": "SELECT * \n  FROM OPENROWSET \n  (\n    BULK 'https://laxmynicdatastorage.dfs.core.windows.net/data/folder/*.parquet',\n    FORMAT = 'PARQUET'\n  ) AS [mytable]\n\n  SELECT * \n  FROM OPENROWSET \n  (\n    BULK 'https://laxmynicdatastorage.blob.core.windows.net/data/folder/*.parquet',\n    FORMAT = 'PARQUET'\n  ) AS [mytable]",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "mydb",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,0 +1,17 @@
+{
+	"name": "4_PQT_EXT_DSP",
+	"properties": {
+		"content": {
+			"query": "CREATE EXTERNAL DATA SOURCE pqt_ext_data_source\nWITH\n(\n    LOCATION = 'https://laxmynicdatastorage.blob.core.windows.net/data'\n)\n\nCREATE EXTERNAL FILE FORMAT pqt_file_format\nWITH\n(\n    FORMAT_TYPE = PARQUET,\n    DATA_COMPRESSION = 'org.apache.hadoop.io.compress.SnappyCodec'\n)\n\nCREATE EXTERNAL TABLE pqt_Ext_Table\n(\n    [Correlationid]    VARCHAR(200),\n    [Operationname]    VARCHAR(300),\n    [Status]           VARCHAR(100),\n    [Eventcategory]    VARCHAR(100),\n    [Level]            VARCHAR(100),\n    [Time]             VARCHAR(100),\n    [Subscription]     VARCHAR(200),\n    [Eventinitiatedby] VARCHAR(1000),\n    [Resourcetype]     VARCHAR(300),\n    [Resourcegroup]    VARCHAR(1000),\n    [Resource]         VARCHAR(2000)\n)\nWITH\n(\n    LOCATION = '/folder/*.parquet',\n    DATA_SOURCE = pqt_ext_data_source,\n    FILE_FORMAT = pqt_file_format\n) \n\nSELECT * FROM csv_Ext_Table\n\nCREATE EXTERNAL DATA SOURCE csv_ext_data_source\nWITH\n(\n    LOCATION = 'https://laxmynicdatastorage.dfs.core.windows.net/data'\n)",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "datapool",
+				"poolName": "datapool"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

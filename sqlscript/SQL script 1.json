@@ -1,0 +1,17 @@
+{
+	"name": "SQL script 1",
+	"properties": {
+		"content": {
+			"query": "DROP TABLE SalesOrderDetail\n\nCREATE TABLE SalesOrderDetail\n(\n    SalesOrderID         INT,\n    SalesOrderDetailID   INT,\n    OrderQty             SMALLINT,\n    ProductID            INT,\n    UnitPrice            MONEY,\n    UnitPriceDiscount    MONEY,\n    LineTotal            DECIMAL,\n    rowguid              UNIQUEIDENTIFIER,\n    ModifiedDate         DATETIME\n)\nWITH\n(\n    DISTRIBUTION = HASH (SalesOrderDetailID),\n    CLUSTERED COLUMNSTORE INDEX\n)\n\nSELECT count(*) FROM SalesOrderDetail\n\nCREATE TABLE FactSales\n(\n    SalesOrderID      INT       NOT NULL,\n    OrderDate         DATETIME  NOT NULL,\n    CustomerID        INT       NOT NULL,\n    SubTotal          MONEY     NOT NULL,\n    TaxAmt            MONEY     NOT NULL,\n    Freight           MONEY     NOT NULL,\n    TotalDue          MONEY     NOT NULL,\n    OrderQty          INT,\n    ProductID         INT       NOT NULL,\n    UnitPrice         MONEY     NOT NULL,\n    UnitPriceDiscount MONEY     NOT NULL,\n    LineTotal         DECIMAL   NOT NULL\n)\nWITH\n(\n    DISTRIBUTION = ROUND_ROBIN\n)",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "datapool",
+				"poolName": "datapool"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}

@@ -1,0 +1,72 @@
+{
+	"name": "Sink_Dataset_1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureDataLakeStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileSystem": "data"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "COUNTRY_ID",
+				"type": "String"
+			},
+			{
+				"name": "NAME",
+				"type": "String"
+			},
+			{
+				"name": "NATIONALITY",
+				"type": "String"
+			},
+			{
+				"name": "COUNTRY_CODE",
+				"type": "String"
+			},
+			{
+				"name": "ISO_ALPHA2",
+				"type": "String"
+			},
+			{
+				"name": "CAPITAL",
+				"type": "String"
+			},
+			{
+				"name": "POPULATION",
+				"type": "String"
+			},
+			{
+				"name": "AREA_KM2",
+				"type": "String"
+			},
+			{
+				"name": "REGION_ID",
+				"type": "String"
+			},
+			{
+				"name": "SUB_REGION_ID",
+				"type": "String"
+			},
+			{
+				"name": "INTERMEDIATE_REGION_ID",
+				"type": "String"
+			},
+			{
+				"name": "ORGANIZATION_REGION_ID",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.Synapse/workspaces/datasets"
+}

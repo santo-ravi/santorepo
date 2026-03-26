@@ -1,0 +1,17 @@
+{
+	"name": "2_PQT_EXT_SSP",
+	"properties": {
+		"content": {
+			"query": "CREATE EXTERNAL DATA SOURCE pqtdatasource\nWITH\n(\n    LOCATION = 'https://laxmynicdatastorage.blob.core.windows.net/data'\n)\n\n\nCREATE EXTERNAL FILE FORMAT pqtformat\nWITH\n(\n     FORMAT_TYPE = PARQUET,\n    DATA_COMPRESSION = 'org.apache.hadoop.io.compress.SnappyCodec'\n)\n\nDROP EXTERNAL TABLE pqtExtTable\n\nCREATE EXTERNAL TABLE pqtExtTable\n(\n    [Correlationid]    VARCHAR(200),\n    [Operationname]    VARCHAR(300),\n    [Status]           VARCHAR(100),\n    [Eventcategory]    VARCHAR(100),\n    [Level]            VARCHAR(100),\n    [Time]             VARCHAR(100),\n    [Subscription]     VARCHAR(200),\n    [Eventinitiatedby] VARCHAR(1000),\n    [Resourcetype]     VARCHAR(300),\n    [Resourcegroup]    VARCHAR(1000),\n    [Resource]         VARCHAR(2000)\n)\nWITH\n(\n    LOCATION = '/folder/*.parquet',\n    DATA_SOURCE = pqtdatasource,\n    FILE_FORMAT = pqtformat\n) \n\nSELECT count(*) FROM pqtExtTable",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "mydb",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
