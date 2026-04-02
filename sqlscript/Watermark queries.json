@@ -1,0 +1,17 @@
+{
+	"name": "Watermark queries",
+	"properties": {
+		"content": {
+			"query": "create table data_source_table\n(\n    PersonID int,\n    Name varchar(255),\n    LastModifytime datetime\n);\n\nINSERT INTO data_source_table\n(PersonID, Name, LastModifytime)\nVALUES\n(6,'aaaa', '9/6/2017 12:56:00 AM'),\n(7,'bbbb', '9/7/2017 5:23:00 AM'),\n(8,'cccc', '9/8/2017 2:36:00 AM'),\n(9,'dddd', '9/9/2017 3:21:00 AM'),\n(10,'eeee', '9/10/2017 8:06:00 AM');\n\nSELECT max(lastmodifytime) as NewWatermarkvalue from data_source_table\n\nSELECT * from data_source_table\n\ncreate table watermarktable\n(\n    Tablename varchar(255),\n    watermarkvalue datetime\n);\n\nINSERT INTO watermarktable\nVALUES('data_source_table', '1/1/2010 12:00:00 AM')\n\nselect * from watermarktable",
+			"metadata": {
+				"language": "sql"
+			},
+			"currentConnection": {
+				"databaseName": "master",
+				"poolName": "Built-in"
+			},
+			"resultLimit": 5000
+		},
+		"type": "SqlQuery"
+	}
+}
